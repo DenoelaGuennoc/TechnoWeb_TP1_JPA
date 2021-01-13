@@ -41,4 +41,12 @@ public class Exposition {
     @ManyToMany
     private List<Tableau> oeuvres;
     
+    public float CA(){
+        float vCA = 0.0f;
+        for(Transaction t : ventes){
+            vCA += t.getPrixVente();
+        }
+        return vCA;
+    }
+    
 }
