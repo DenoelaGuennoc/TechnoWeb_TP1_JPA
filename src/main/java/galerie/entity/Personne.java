@@ -31,4 +31,14 @@ public class Personne {
     @OneToMany (mappedBy="client")
     private List<Transaction> achats;
     
+    public float budgetArt(int annee){
+        float budget = 0.0f;
+        for(Transaction t : achats){
+            if (t.getVenduLe().getYear() == annee){
+                budget += t.getPrixVente();
+            }
+        }
+        return budget;
+    }
+        
 }

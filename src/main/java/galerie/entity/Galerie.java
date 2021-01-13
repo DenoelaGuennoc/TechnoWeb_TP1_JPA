@@ -23,4 +23,8 @@ public class Galerie {
     @OneToMany (mappedBy = "organisateur")
     private List<Exposition> evenements;
     
+//    public float CAannuel (int annee){
+//        
+//    }
+    
 }

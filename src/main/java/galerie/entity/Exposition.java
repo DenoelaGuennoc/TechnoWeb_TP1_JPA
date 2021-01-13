@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package galerie.entity;
+import java.time.LocalDate;
 import javax.persistence.*;
 import lombok.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class Exposition {
     
     @Column(unique=true)
     @NonNull
-    private Date debut;
+    private LocalDate debut;
     
     @Column(unique=true)
     @NonNull

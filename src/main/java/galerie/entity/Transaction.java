@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package galerie.entity;
+import java.time.LocalDate;
 import javax.persistence.*;
 import lombok.*;
-import java.util.Date;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Transaction {
     
     @Column(unique=true)
     @NonNull
-    private Date venduLe;
+    private LocalDate venduLe;
     
     @Column(unique=true)
     @NonNull
