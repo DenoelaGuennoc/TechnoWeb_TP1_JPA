@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package galerie.entity;
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,7 @@ import lombok.*;
 public class Tableau {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
+    private Integer idTableau;
     
     @Column(unique=true)
     @NonNull
@@ -33,5 +34,11 @@ public class Tableau {
     @Column(unique=true)
     @NonNull
     private int hauteur;
+    
+    @ManyToOne
+    private Artiste auteur;
+    
+    @ManyToMany (mappedBy="oeuvres")
+    private List<Exposition> accrochage;
     
 }

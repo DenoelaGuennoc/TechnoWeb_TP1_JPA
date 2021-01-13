@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package galerie.entity;
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -13,13 +14,14 @@ import lombok.*;
  */
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity // Une entité JPA
-public class Artiste {
-    
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
-    
+@PrimaryKeyJoinColumn(name="idPersonne")
+public class Artiste extends Personne{
+   
     @Column(unique=true)
     @NonNull
     private String biographie;
+    
+    @OneToMany (mappedBy="auteur")
+    private List<Tableau> oeuvres;
     
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 public class Transaction {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
+    private Integer idTransaction;
     
     @Column(unique=true)
     @NonNull
@@ -26,5 +26,11 @@ public class Transaction {
     @Column(unique=true)
     @NonNull
     private float prixVente;
+    
+    @ManyToOne
+    private Personne client;
+    
+    @ManyToOne
+    private Exposition lieuDeVente;
     
 }

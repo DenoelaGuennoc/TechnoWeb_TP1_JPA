@@ -7,6 +7,7 @@ package galerie.entity;
 import javax.persistence.*;
 import lombok.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.util.Date;
 public class Exposition {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
+    private Integer idExposition;
     
     @Column(unique=true)
     @NonNull
@@ -30,5 +31,14 @@ public class Exposition {
     @Column(unique=true)
     @NonNull
     private int duree;
+    
+    @ManyToOne
+    private Galerie organisateur;
+    
+    @OneToMany (mappedBy="lieuDeVente")
+    private List<Transaction> ventes;
+    
+    @ManyToMany
+    private List<Tableau> oeuvres;
     
 }
