@@ -17,7 +17,7 @@ import lombok.*;
 public class Tableau {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer idTableau;
+    private Integer id;
     
     @Column(unique=true)
     @NonNull
@@ -40,5 +40,8 @@ public class Tableau {
     
     @ManyToMany (mappedBy="oeuvres")
     private List<Exposition> accrochage;
+    
+    @OneToOne (mappedBy = "oeuvre")
+    private Transaction vendu;
     
 }

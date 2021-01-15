@@ -10,7 +10,7 @@ import lombok.*;
 @Entity // Une entité JPA
 public class Galerie {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer idGalerie;
+    private Integer id;
 
     @Column(unique=true)
     @NonNull

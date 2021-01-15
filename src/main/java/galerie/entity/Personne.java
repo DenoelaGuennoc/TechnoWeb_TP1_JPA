@@ -18,7 +18,7 @@ import lombok.*;
 public class Personne {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer idPersonne;
+    private Integer id;
     
     @Column(unique=true)
     @NonNull

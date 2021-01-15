@@ -18,7 +18,7 @@ import java.util.List;
 public class Exposition {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer idExposition;
+    private Integer id;
     
     @Column(unique=true)
     @NonNull

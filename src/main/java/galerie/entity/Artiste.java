@@ -14,7 +14,7 @@ import lombok.*;
  */
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity // Une entité JPA
-@PrimaryKeyJoinColumn(name="idPersonne")
+@PrimaryKeyJoinColumn(name="id")
 public class Artiste extends Personne{
    
     @Column(unique=true)
