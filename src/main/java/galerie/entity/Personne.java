@@ -33,9 +33,11 @@ public class Personne {
     
     public float budgetArt(int annee){
         float vBudget = 0.0f;
-        for(Transaction t : achats){
-            if (t.getVenduLe().getYear() == annee){
-                vBudget += t.getPrixVente();
+        if(!achats.isEmpty()){
+            for(Transaction t : achats){
+                if (t.getVenduLe().getYear() == annee){
+                    vBudget += t.getPrixVente();
+                }
             }
         }
         return vBudget;

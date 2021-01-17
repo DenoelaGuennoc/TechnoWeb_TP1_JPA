@@ -70,5 +70,15 @@ public class GalerieRepositoryTest {
         assertEquals("testNom",newGalerie.getNom());
         assertEquals("testAdresse", newGalerie.getAdresse());
     }
+    
+    @Test
+    @Sql("test-data.sql")
+    public void testCAannuel(){
+        float caAnnuel = 560;
+        Optional<Galerie> vGalerie = galerieDAO.findById(3);
+        assertTrue(vGalerie.isPresent(), "Cette galerie devrait exister");
+        Galerie galerie = vGalerie.get();
+        assertEquals(caAnnuel, galerie.CAannuel(2020), "Le calcul du CA annuel de la galerie est inexacte");
+    }
 
 }

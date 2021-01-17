@@ -78,4 +78,14 @@ public class ExpositionRepositoryTest {
         assertEquals(53,newExpo.getDuree(),"La durée associée est erronée");
     }
     
+    @Test
+    @Sql("test-data.sql")
+    public void testCA(){
+        float ca = 1500 + 288 + 1512;
+        Optional<Exposition> vExpo = galerieDAO.findById(2);
+        assertTrue(vExpo.isPresent(), "Cette exposition devrait exister");
+        Exposition expo = vExpo.get();
+        assertEquals(ca, expo.CA(), "le calcul du CA est erroné");
+    }
+    
 }

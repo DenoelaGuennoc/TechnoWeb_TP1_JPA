@@ -17,7 +17,7 @@ INSERT INTO Personne(id, nom, adresse) VALUES (7, 'Gilbert', 'Reims');
 INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (1, TO_DATE('2020-01-03', 'YYYY-MM-DD'), 'Romantisme et peinture', 15, 2);
 INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (2, TO_DATE('2020-08-12', 'YYYY-MM-DD'), 'La photographie noire et blanc', 48, 4);
 INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (3, TO_DATE('2020-02-23', 'YYYY-MM-DD'), 'L''Hyperréalisme, photographier au crayon', 26, 4);
-INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (4, TO_DATE('2020-11-05', 'YYYY-MM-DD'), 'Paysages gravés', 57, 4);
+INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (4, TO_DATE('2020-11-05', 'YYYY-MM-DD'), 'Paysages gravés', 107, 3);
 INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (5, TO_DATE('2021-02-18', 'YYYY-MM-DD'), 'Post-modernisme', 20, 1);
 
 
@@ -61,3 +61,4 @@ INSERT INTO Transaction(id, prix_vente, vendu_le, client_id, lieu_de_vente_id, o
 INSERT INTO Transaction(id, prix_vente, vendu_le, client_id, lieu_de_vente_id, oeuvre_id) VALUES (4, 560, TO_DATE('2020-11-10', 'YYYY-MM-DD'), 4, 4, 10);
 INSERT INTO Transaction(id, prix_vente, vendu_le, client_id, lieu_de_vente_id, oeuvre_id) VALUES (5, 288, TO_DATE('2020-08-23', 'YYYY-MM-DD'), 1, 2, 9);
 INSERT INTO Transaction(id, prix_vente, vendu_le, client_id, lieu_de_vente_id, oeuvre_id) VALUES (6, 1512, TO_DATE('2020-08-23', 'YYYY-MM-DD'), 1, 2, 12);
+INSERT INTO Transaction(id, prix_vente, vendu_le, client_id, lieu_de_vente_id, oeuvre_id) VALUES (7, 1236.50, TO_DATE('2021-01-16', 'YYYY-MM-DD'), 4, 4, 4);

@@ -44,8 +44,10 @@ public class Exposition {
     
     public float CA(){
         float vCA = 0.0f;
-        for(Transaction t : ventes){
-            vCA += t.getPrixVente();
+        if(!ventes.isEmpty()){
+            for(Transaction t : ventes){
+                vCA += t.getPrixVente();
+            }
         }
         return vCA;
     }
