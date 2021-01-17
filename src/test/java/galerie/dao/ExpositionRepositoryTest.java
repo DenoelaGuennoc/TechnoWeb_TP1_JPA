@@ -25,21 +25,21 @@ import java.util.Optional;
 public class ExpositionRepositoryTest {
     
     @Autowired
-    private ExpositionRepository galerieDAO;
+    private ExpositionRepository expositionDAO;
 
     @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'Exposition'");
         int combienDansLeJeuDeTest = 5; 
-        long nombre = galerieDAO.count();
+        long nombre = expositionDAO.count();
         assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 5 expositions" );
     }
     
     @Test
     public void listerLesEnregistrements(){
         log.info("On liste les enregistrement de la table 'Exposition'");
-        List<Exposition> expo = galerieDAO.findAll();
+        List<Exposition> expo = expositionDAO.findAll();
         log.info("Liste des enregistrements : {}", expo);
     }
     
@@ -48,7 +48,7 @@ public class ExpositionRepositoryTest {
     public void trouverEnregistrementParClé(){
         log.info("On cherche un enregistrement en fonction de sa clé primaire");
         int cleRecherchee = 2;
-        Optional<Exposition> trouve = galerieDAO.findById(cleRecherchee);
+        Optional<Exposition> trouve = expositionDAO.findById(cleRecherchee);
         assertTrue(trouve.isPresent(), "Cette exposition devrait exister");
         Exposition expoTrouvee = trouve.get();
         assertEquals("La photographie noire et blanc", expoTrouvee.getIntitule(), "L'intitulé associé à cette clé est erroné");
@@ -58,7 +58,7 @@ public class ExpositionRepositoryTest {
     public void chercherEnregistrementInexistant(){
         log.info("recherche d'un enregistrement par une clé inexistante");
         int cleInconnue = 22;
-        Optional<Exposition> resultat = galerieDAO.findById(cleInconnue);
+        Optional<Exposition> resultat = expositionDAO.findById(cleInconnue);
         assertFalse(resultat.isPresent(), "Aucune exposition ne doit avoir cet ID");
     }
     
@@ -70,7 +70,7 @@ public class ExpositionRepositoryTest {
         newExpo.setDebut(LocalDate.parse("2022-10-08"));
         newExpo.setDuree(53);
         assertNull(newExpo.getId(), "la galerie ne doit pas encore avoir de clé");
-        galerieDAO.save(newExpo);
+        expositionDAO.save(newExpo);
         Integer newCle = newExpo.getId();
         assertNotNull(newCle, "La nouvelle clé doit avoir été générée");
         assertEquals("testIntitule",newExpo.getIntitule(),"L'intitule associé est erroné");
@@ -82,7 +82,7 @@ public class ExpositionRepositoryTest {
     @Sql("test-data.sql")
     public void testCAjava(){
         float ca = 1500 + 288 + 1512;
-        Optional<Exposition> vExpo = galerieDAO.findById(2);
+        Optional<Exposition> vExpo = expositionDAO.findById(2);
         assertTrue(vExpo.isPresent(), "Cette exposition devrait exister");
         Exposition expo = vExpo.get();
         assertEquals(ca, expo.CA(), "le calcul du CA est erroné");
@@ -92,7 +92,7 @@ public class ExpositionRepositoryTest {
     @Sql("test-data.sql")
     public void testCAsql(){
         float ca = 1500 + 288 + 1512;
-        float caCalcule = galerieDAO.chiffreAffairePour(2);
+        float caCalcule = expositionDAO.chiffreAffairePour(2);
         assertEquals(ca, caCalcule, "le calcul du CA est erroné");
     }
     

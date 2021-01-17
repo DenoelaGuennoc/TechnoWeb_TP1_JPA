@@ -24,21 +24,21 @@ import java.util.Optional;
 public class PersonneRepositoryTest {
     
     @Autowired
-    private PersonneRepository galerieDAO;
+    private PersonneRepository personneDAO;
 
     @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'Personne'");
-        int combienDansLeJeuDeTest = 7; 
-        long nombre = galerieDAO.count();
-        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 7 personnes" );
+        int combienDansLeJeuDeTest = 8; 
+        long nombre = personneDAO.count();
+        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 8 personnes" );
     }
     
     @Test
     public void listerLesEnregistrements(){
         log.info("On liste les enregistrement de la table 'Personne'");
-        List<Personne> personnes = galerieDAO.findAll();
+        List<Personne> personnes = personneDAO.findAll();
         log.info("Liste des enregistrements : {}", personnes);
     }
     
@@ -47,7 +47,7 @@ public class PersonneRepositoryTest {
     public void trouverEnregistrementParClé(){
         log.info("On cherche un enregistrement en fonction de sa clé primaire");
         int cleRecherchee = 3;
-        Optional<Personne> trouve = galerieDAO.findById(cleRecherchee);
+        Optional<Personne> trouve = personneDAO.findById(cleRecherchee);
         assertTrue(trouve.isPresent(), "Cette personne devrait exister");
         Personne personneTrouvee = trouve.get();
         assertEquals("Dumont", personneTrouvee.getNom(), "Le nom associé à cette clé est erroné");
@@ -58,7 +58,7 @@ public class PersonneRepositoryTest {
     public void chercherEnregistrementInexistant(){
         log.info("recherche d'un enregistrement par une clé inexistante");
         int cleInconnue = 22;
-        Optional<Personne> resultat = galerieDAO.findById(cleInconnue);
+        Optional<Personne> resultat = personneDAO.findById(cleInconnue);
         assertFalse(resultat.isPresent(), "Aucune personne ne doit avoir cet ID");
     }
     
@@ -69,7 +69,7 @@ public class PersonneRepositoryTest {
         newPersonne.setNom("testNom");
         newPersonne.setAdresse("testAdresse");
         assertNull(newPersonne.getId(), "la personne ne doit pas encore avoir de clé");
-        galerieDAO.save(newPersonne);
+        personneDAO.save(newPersonne);
         Integer newCle = newPersonne.getId();
         assertNotNull(newCle, "La nouvelle clé doit avoir été générée");
         assertEquals("testNom",newPersonne.getNom());
@@ -79,10 +79,18 @@ public class PersonneRepositoryTest {
     @Test
     @Sql("test-data.sql")
     public void testBudgetArt(){
-        float budget = 3000 + 288 + 1512;
-        Optional<Personne> trouvee = galerieDAO.findById(1);
+        // Pour une personne n'ayant effectué aucun achat :
+        float budget = 0.0f;
+        Optional<Personne> op = personneDAO.findById(8);
+        assertTrue(op.isPresent(), "Cette personne devrait exister");
+        Personne p1 = op.get();
+        assertEquals(budget, p1.budgetArt(2020), "Le budget de cette personne pour l'année donnée est inexact");
+        
+        // Pour une personne ayant effectué des achats :
+        budget = 3000 + 288 + 1512;
+        Optional<Personne> trouvee = personneDAO.findById(1);
         assertTrue(trouvee.isPresent(), "Cette personne devrait exister");
-        Personne p = trouvee.get();
-        assertEquals(budget, p.budgetArt(2020), "Le budget de cette personne pour l'année donnée est inexacte");
+        Personne p2 = trouvee.get();
+        assertEquals(budget, p2.budgetArt(2020), "Le budget de cette personne pour l'année donnée est inexact");
     }
 }

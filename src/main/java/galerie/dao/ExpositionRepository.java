@@ -20,7 +20,7 @@ public interface ExpositionRepository extends JpaRepository<Exposition, Integer>
             + "ON(Transaction.lieu_de_vente_id = Exposition.id)"
             + "WHERE Exposition.id = :id",
         nativeQuery = true
-    )
+    ) //requête SQL beaucoup plus courte et simple que celle générée par la méthode JAVA
     
     float chiffreAffairePour(Integer id);
     

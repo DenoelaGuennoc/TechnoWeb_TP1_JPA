@@ -12,6 +12,7 @@ INSERT INTO Personne(id, nom, adresse) VALUES (4, 'Smith', 'Londres');
 INSERT INTO Personne(id, nom, adresse) VALUES (5, 'Holmes', 'New Castle');
 INSERT INTO Personne(id, nom, adresse) VALUES (6, 'Schweins', 'Hambourg');
 INSERT INTO Personne(id, nom, adresse) VALUES (7, 'Gilbert', 'Reims');
+INSERT INTO Personne(id, nom, adresse) VALUES (8, 'Picon', 'Prague');
 
 
 INSERT INTO Exposition(id, debut, intitule, duree, organisateur_id) VALUES (1, TO_DATE('2020-01-03', 'YYYY-MM-DD'), 'Romantisme et peinture', 15, 2);
