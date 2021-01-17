@@ -30,9 +30,9 @@ public class PersonneRepositoryTest {
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'Personne'");
-        int combienDansLeJeuDeTest = 6; 
+        int combienDansLeJeuDeTest = 7; 
         long nombre = galerieDAO.count();
-        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 6 personnes" );
+        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 7 personnes" );
     }
     
     @Test
@@ -74,5 +74,15 @@ public class PersonneRepositoryTest {
         assertNotNull(newCle, "La nouvelle clé doit avoir été générée");
         assertEquals("testNom",newPersonne.getNom());
         assertEquals("testAdresse", newPersonne.getAdresse());
+    }
+    
+    @Test
+    @Sql("test-data.sql")
+    public void testBudgetArt(){
+        float budget = 3000 + 288 + 1512;
+        Optional<Personne> trouvee = galerieDAO.findById(1);
+        assertTrue(trouvee.isPresent(), "Cette personne devrait exister");
+        Personne p = trouvee.get();
+        assertEquals(budget, p.budgetArt(2020), "Le budget de cette personne pour l'année donnée est inexacte");
     }
 }

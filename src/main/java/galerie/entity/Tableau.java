@@ -23,15 +23,15 @@ public class Tableau {
     @NonNull
     private String titre;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private String support;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int largeur;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int hauteur;
     
@@ -39,6 +39,7 @@ public class Tableau {
     private Artiste auteur;
     
     @ManyToMany (mappedBy="oeuvres")
+    @NonNull
     private List<Exposition> accrochage;
     
     @OneToOne (mappedBy = "oeuvre")

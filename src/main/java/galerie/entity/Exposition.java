@@ -20,19 +20,20 @@ public class Exposition {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private LocalDate debut;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private String intitule;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int duree;
     
     @ManyToOne
+    @NonNull
     private Galerie organisateur;
     
     @OneToMany (mappedBy="lieuDeVente")
