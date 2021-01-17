@@ -16,7 +16,7 @@ public interface ExpositionRepository extends JpaRepository<Exposition, Integer>
     
     @Query(
         value = "SELECT SUM(prix_vente)"
-            + "FROM Transaction INNER JOIN Exposition"
+            + "FROM Transaction INNER JOIN Exposition "
             + "ON(Transaction.lieu_de_vente_id = Exposition.id)"
             + "WHERE Exposition.id = :id",
         nativeQuery = true

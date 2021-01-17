@@ -80,12 +80,20 @@ public class ExpositionRepositoryTest {
     
     @Test
     @Sql("test-data.sql")
-    public void testCA(){
+    public void testCAjava(){
         float ca = 1500 + 288 + 1512;
         Optional<Exposition> vExpo = galerieDAO.findById(2);
         assertTrue(vExpo.isPresent(), "Cette exposition devrait exister");
         Exposition expo = vExpo.get();
         assertEquals(ca, expo.CA(), "le calcul du CA est erroné");
+    }
+    
+    @Test
+    @Sql("test-data.sql")
+    public void testCAsql(){
+        float ca = 1500 + 288 + 1512;
+        float caCalcule = galerieDAO.chiffreAffairePour(2);
+        assertEquals(ca, caCalcule, "le calcul du CA est erroné");
     }
     
 }
